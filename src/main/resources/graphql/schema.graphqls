@@ -1,0 +1,28 @@
+schema {
+    query: Query,
+    mutation: Mutation,
+}
+
+type Mutation {
+    registerUser(userParam : UserParam) : User # ! == null 값 허용 X
+    deleteUser(userId: Int!) : Boolean
+}
+
+type Query{
+    findUserById(userId: Int!) : User!
+    findAll : [User]
+}
+
+type User {
+    userId : Int
+    email : String
+    password : String
+}
+
+input UserParam {
+    userId : Int!
+    email : String!
+    password : String!
+}
+
+# type : 응답값 정의, input 파라미터 값 정의
