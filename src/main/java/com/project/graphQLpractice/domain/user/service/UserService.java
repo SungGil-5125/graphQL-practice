@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,15 +20,28 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public User save(UserReqDto userParam) {
-        log.info("sdfasfasdf");
-        return userRepository.save(userParam.toEntity());
+    public UserResDto registerUser(UserReqDto userParam) {
+        log.info(userParam.getEmail());
+        log.info(userParam.getPassword());
+        User user = userParam.toEntity();
+        userRepository.save(user);
+        return UserResDto.builder()
+                .userId(user.getUserId())
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .build();
     }
 
     @Transactional
-    public void delete(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
-        userRepository.delete(user);
+    public boolean delete(Long userId) {
+
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
+        if(user==null) {
+            return false;
+        } else {
+            userRepository.delete(user);
+            return true;
+        }
     }
 
     @Transactional(readOnly = true)
