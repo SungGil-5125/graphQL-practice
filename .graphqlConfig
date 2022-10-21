@@ -1,5 +1,5 @@
 {
-  "name": "Graphql-Example",
+  "name": "graphQL-practice",
   "schemaPath": "src/main/resources/graphql/schema.graphqls",
   "extensions": {}
 }
