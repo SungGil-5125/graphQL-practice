@@ -1,0 +1,5 @@
+type ResponseUser {
+    userId : ID
+    email : String
+    password : String
+}

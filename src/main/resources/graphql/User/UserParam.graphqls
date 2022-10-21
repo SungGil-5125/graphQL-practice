@@ -1,0 +1,4 @@
+input UserParam {
+    email : String!
+    password : String!
+}
