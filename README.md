@@ -1,5 +1,5 @@
 # graphQL-practice
-graphQL를 spring boot로 연습하는 레포지토리입니다.
+graphQL을 spring boot로 연습하는 레포지토리입니다.
 
 ## yml 설정 ##
 ```yml
